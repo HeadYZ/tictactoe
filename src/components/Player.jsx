@@ -1,26 +1,23 @@
 import { useRef, useState } from 'react'
 
-const Player = ({ name, symbol }) => {
+const Player = ({ initalName, symbol }) => {
 	const [isEditing, setIsEditing] = useState(false)
-	const [playerName, setPlayerName] = useState(name)
-	const userInput = useRef()
+	const [playerName, setPlayerName] = useState(initalName)
+
+	let editablePlayerName = <span className='player-name'>{playerName}</span>
 
 	const editingHandler = () => {
-		if (isEditing) {
-			changeNameHandler()
-			setIsEditing(false)
-			return
-		}
-		setIsEditing(true)
+		setIsEditing(editing => !editing)
 	}
-	const changeNameHandler = () => {
-		setPlayerName(userInput.current.value)
+	const changeNameHandler = e => {
+		setPlayerName(e.target.value)
 	}
+	if (isEditing) editablePlayerName = <input type='text' required placeholder={playerName} onChange={changeNameHandler} />
 
 	return (
 		<li>
 			<span className='player'>
-				{isEditing ? <input type='text' ref={userInput} required /> : <span className='player-name'>{playerName}</span>}
+				{editablePlayerName}
 				<span className='player-symbol'>{symbol}</span>
 			</span>
 			<button onClick={editingHandler}>{isEditing ? 'Save' : 'Edit'}</button>
