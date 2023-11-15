@@ -6,7 +6,7 @@ const initialGameBoard = [
 	[null, null, null],
 ]
 
-const GameBoard = () => {
+const GameBoard = ({onSelectSquare}) => {
 	const [gameBoard, setGameBoard] = useState(initialGameBoard)
 
 	const selectSquareHandler = (rowIndex, colIndex) => {
@@ -15,6 +15,8 @@ const GameBoard = () => {
 			updatedBoard[rowIndex][colIndex] = 'X'
 			return updatedBoard
 		})
+
+        onSelectSquare()
 	}
 
 	return (
