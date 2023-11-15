@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import {useState } from 'react'
 
 const Player = ({ initalName, symbol, isActive }) => {
 	const [isEditing, setIsEditing] = useState(false)
