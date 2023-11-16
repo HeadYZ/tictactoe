@@ -1,6 +1,6 @@
-import {useState } from 'react'
+import { useState } from 'react'
 
-const Player = ({ initalName, symbol, isActive }) => {
+const Player = ({ initalName, symbol, isActive, onChangeName }) => {
 	const [isEditing, setIsEditing] = useState(false)
 	const [playerName, setPlayerName] = useState(initalName)
 
@@ -8,6 +8,7 @@ const Player = ({ initalName, symbol, isActive }) => {
 
 	const editingHandler = () => {
 		setIsEditing(editing => !editing)
+		isEditing ? onChangeName(symbol, playerName) : ''
 	}
 	const changeNameHandler = e => {
 		setPlayerName(e.target.value)
