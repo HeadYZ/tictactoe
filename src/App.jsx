@@ -3,6 +3,7 @@ import GameBoard from './components/GameBoard'
 import Player from './components/Player'
 import Log from './components/Log'
 import { WINNING_COMBINATIONS } from './winning-combinations.js'
+import GameOver from './components/GameOver.jsx'
 const initialGameBoard = [
 	[null, null, null],
 	[null, null, null],
@@ -59,7 +60,7 @@ function App() {
 					<Player initalName='Player 1' symbol='X' isActive={activePlayer === 'X'}></Player>
 					<Player initalName='Player 2' symbol='O' isActive={activePlayer === 'O'}></Player>
 				</ol>
-				{winner && <p>You won, {winner}!</p>}
+				{winner && <GameOver winner={winner}/>}
 				<GameBoard onSelectSquare={selectSquareHandler} board={gameBoard} />
 			</div>
 			<Log turns={gameTurns} />
